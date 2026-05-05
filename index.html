@@ -1,15 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <script>
-    const ua = navigator.userAgent.toLowerCase();
-    if (/iphone|ipad|ipod/.test(ua)) {
-      window.location = 'https://apps.apple.com/tr/app/apartix/id6764777358';
-    } else if (/android/.test(ua)) {
-      window.location = 'https://play.google.com/store/apps/details?id=com.apartix.app';
-    }
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartix - Yönlendiriliyorsunuz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            color: #1e293b;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #4f46e5;
+            margin-bottom: 8px;
+            letter-spacing: -1.5px;
+        }
+
+        .status-text {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 32px;
+        }
+
+        .loader-bar {
+            width: 200px;
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loader-fill {
+            position: absolute;
+            width: 40%;
+            height: 100%;
+            background: #4f46e5;
+            border-radius: 10px;
+            animation: slide 1.5s infinite ease-in-out;
+        }
+
+        @keyframes slide {
+            0% { left: -40%; }
+            100% { left: 100%; }
+        }
+
+        .footer-text {
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        #manual-link-container {
+            display: none;
+        }
+
+        a {
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const ua = navigator.userAgent.toLowerCase();
+            const iosUrl = 'https://apps.apple.com/tr/app/apartix/id6764777358';
+            const androidUrl = 'https://play.google.com/store/apps/details?id=com.apartix.app';
+            
+            let targetUrl = '';
+            const linkElement = document.getElementById('manual-link');
+            const containerElement = document.getElementById('manual-link-container');
+
+            if (/iphone|ipad|ipod/.test(ua)) {
+                targetUrl = iosUrl;
+            } else if (/android/.test(ua)) {
+                targetUrl = androidUrl;
+            }
+
+            if (targetUrl) {
+                linkElement.href = targetUrl;
+                containerElement.style.display = 'block';
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 800);
+            } else {
+                containerElement.style.display = 'block';
+                linkElement.innerText = "Mağazaya gitmek için tıklayın";
+                linkElement.href = iosUrl; 
+            }
+        });
+    </script>
 </head>
-<body></body>
+<body>
+
+    <div class="container">
+        <div class="logo">Apartix</div>
+        <p class="status-text">Uygulama mağazasına yönlendiriliyorsunuz...</p>
+        
+        <div class="loader-bar">
+            <div class="loader-fill"></div>
+        </div>
+
+        <div id="manual-link-container" class="footer-text">
+            Eğer yönlendirme başlamazsa <br>
+            <a id="manual-link" href="#">buraya tıklayabilirsiniz.</a>
+        </div>
+    </div>
+
+</body>
 </html>
