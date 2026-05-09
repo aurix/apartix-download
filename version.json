@@ -1,0 +1,12 @@
+{
+  "ios": {
+    "minimum_version": "1.2.1",
+    "latest_version": "1.2.1",
+    "store_url": "https://apps.apple.com/tr/app/apartix/id6764777358"
+  },
+  "android": {
+    "minimum_version": "1.2.1",
+    "latest_version": "1.2.1",
+    "store_url": "https://play.google.com/store/apps/details?id=com.apartix.app"
+  }
+}
